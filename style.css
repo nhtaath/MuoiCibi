@@ -1,0 +1,112 @@
+body {
+    background-image: url('background.jpg'); /* Đường dẫn đến ảnh nền */
+    background-size: cover; /* Ảnh nền bao phủ toàn bộ màn hình */
+    background-position: center; /* Căn chỉnh ảnh nền ở giữa */
+    background-repeat: no-repeat; /* Không lặp lại ảnh nền */
+    font-family: 'Poppins', sans-serif; /* Font chữ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Ngăn cuộn màn hình khi hoa hồng bay */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    transition: all 0.3s ease-in-out; /* Thêm hiệu ứng */
+    z-index: 2;
+    position: relative;
+    top: -80px; /* Đẩy thẻ lên cao hơn so với vị trí ban đầu */
+}
+
+h1 {
+    color: #e63946;
+    font-size: 2rem;
+}
+
+.message {
+    color: #000000;
+    margin-top: 20px;
+    display: none; /* Ẩn lời chúc ban đầu */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s; /* Hiệu ứng khi hiện lời chúc */
+}
+
+.message.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Lời chúc xuất hiện mượt */
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #457b9d;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, opacity 0.3s ease; /* Hiệu ứng hover và ẩn */
+}
+
+button:hover {
+    background-color: #1d3557;
+}
+
+button:active {
+    transform: scale(0.95); /* Hiệu ứng nhấn nút */
+}
+
+/* Hoa hồng bay */
+.roses-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* Không ảnh hưởng đến việc tương tác */
+}
+
+.rose {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url('rose.png'); /* Đường dẫn đến hình ảnh hoa hồng */
+    background-size: cover;
+    opacity: 0;
+    animation: fly 30s linear infinite;
+    animation-fill-mode: forwards; /* Giữ trạng thái cuối của hoạt ảnh */
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Hiệu ứng hoa hồng rơi xuống */
+@keyframes fall {
+    0% {
+        transform: translateY(-50px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
