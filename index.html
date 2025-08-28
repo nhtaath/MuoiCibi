@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>làM wEn</title>
+    <title>Làm Quen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="card">
-        <h1>cKo AnH LÀm quEN b3' nKa</h1>
-        <p class="message" id="hiddenMessage">Anh hay tinh nghịch quậy phá vậy á, nữa em đi học anh làm đủ trò cho em coii</p>
-        <button onclick="showMessage()">Đòng ý luôn</button>
-        <button onclick="closeWindow()">Hết gòi</button>
+        <h1>Có cho anh làm quen hem? 🥰</h1>
+        <p class="message" id="hiddenMessage">
+            Anh hay tinh nghịch quậy phá lắm á, lần sau gặp sẽ làm đủ trò cho em coiii! 😘
+        </p>
+        <div class="buttons">
+            <button id="agreeBtn" onclick="showMessage()">Đồng ý luôn 💌</button>
+            <button id="closeBtn" onclick="closeWindow()">Hết gòi 😭</button>
+        </div>
     </div>
 
-    <!-- Container để chứa hiệu ứng hoa hồng bay -->
+    <!-- Container hoa hồng -->
     <div id="rosesContainer" class="roses-container"></div>
 
     <!-- Nhạc nền -->
-    <audio id="backgroundMusic" src="music.mp3"></audio> <!-- Đường dẫn đến tệp nhạc -->
+    <audio id="backgroundMusic" src="music.mp3"></audio>
 
     <script src="script.js"></script>
 </body>
