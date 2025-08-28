@@ -1,41 +1,43 @@
-// Khởi tạo ẩn nút "Hết gòi" khi trang tải
 window.onload = function() {
-    const closeButton = document.querySelectorAll('button')[1]; // Chọn nút "Hết gòi"
-    closeButton.style.display = 'none'; // Ẩn nút "Hết gòi" khi tải trang
+    document.getElementById("closeBtn").style.display = "none";
 };
 
 function showMessage() {
     const message = document.getElementById("hiddenMessage");
-    const showButton = document.querySelector('button'); // Chọn nút "Xem lời chúc"
-    const closeButton = document.querySelectorAll('button')[1]; // Chọn nút "Hết gòi"
-    const music = document.getElementById("backgroundMusic"); // Chọn đoạn nhạc
+    const agreeBtn = document.getElementById("agreeBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const music = document.getElementById("backgroundMusic");
 
-    message.classList.add('show'); // Hiển thị lời chúc với hiệu ứng
-    showButton.style.display = 'none'; // Ẩn nút "Xem lời chúc" sau khi nhấn
-    closeButton.style.display = 'inline-block'; // Hiển thị nút "Hết gòi" sau khi hiển thị lời chúc
-    createRoses(); // Tạo hoa hồng bay
-    music.play(); // Phát nhạc khi hiển thị lời chúc
+    // Hiển thị lời nhắn
+    message.classList.add("show");
+    agreeBtn.style.display = "none";
+    closeBtn.style.display = "inline-block";
+
+    // Bắt đầu nhạc
+    music.play();
+
+    // Tạo hoa hồng rơi
+    createRoses();
 }
 
 function closeWindow() {
-    alert('Bái baiiiii!'); // Hiển thị thông báo trước khi đóng cửa sổ
-    window.close(); // Đóng cửa sổ trình duyệt
+    alert("Bái baiiiii! ❤️");
+    window.close();
 }
 
 function createRoses() {
-    const rosesContainer = document.getElementById('rosesContainer');
-    
-    // Tạo 68 hoa hồng bay ngẫu nhiên
-    for (let i = 0; i < 68; i++) {
-        const rose = document.createElement('div');
-        rose.classList.add('rose');
-        
-        // Thiết lập vị trí ngẫu nhiên cho mỗi hoa hồng
-        rose.style.left = Math.random() * window.innerWidth + 'px';
-        rose.style.animationDuration = Math.random() * 5 + 5 + 's'; // Thời gian bay ngẫu nhiên (từ 5s đến 10s)
-        
-        // Thêm hiệu ứng rơi cho hoa
-        rose.style.animationName = 'fall'; 
+    const rosesContainer = document.getElementById("rosesContainer");
+    const roseCount = 40; // Giảm số lượng để nhẹ hơn
+
+    for (let i = 0; i < roseCount; i++) {
+        const rose = document.createElement("div");
+        rose.classList.add("rose");
+
+        rose.style.left = Math.random() * window.innerWidth + "px";
+        rose.style.animationDuration = Math.random() * 5 + 5 + "s";
         rosesContainer.appendChild(rose);
+
+        // Xóa hoa sau khi hoàn thành animation để giảm lag
+        setTimeout(() => rose.remove(), 10000);
     }
 }
