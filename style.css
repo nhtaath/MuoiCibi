@@ -1,72 +1,92 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-image: url('background.jpg'); /* Đường dẫn đến ảnh nền */
-    background-size: cover; /* Ảnh nền bao phủ toàn bộ màn hình */
-    background-position: center; /* Căn chỉnh ảnh nền ở giữa */
-    background-repeat: no-repeat; /* Không lặp lại ảnh nền */
-    font-family: 'Poppins', sans-serif; /* Font chữ */
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    overflow: hidden; /* Ngăn cuộn màn hình khi hoa hồng bay */
+    overflow: hidden;
 }
 
+/* Thẻ chính */
 .card {
-    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng */
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    padding: 30px 25px;
     text-align: center;
+    width: 90%;
     max-width: 400px;
-    width: 100%;
-    transition: all 0.3s ease-in-out; /* Thêm hiệu ứng */
     z-index: 2;
-    position: relative;
-    top: -80px; /* Đẩy thẻ lên cao hơn so với vị trí ban đầu */
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(8px);
 }
 
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* Tiêu đề */
 h1 {
     color: #e63946;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
 }
 
+/* Tin nhắn */
 .message {
-    color: #000000;
-    margin-top: 20px;
-    display: none; /* Ẩn lời chúc ban đầu */
+    color: #333;
+    margin-top: 15px;
+    display: none;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s, transform 0.5s; /* Hiệu ứng khi hiện lời chúc */
+    transform: translateY(10px);
+    font-size: 1rem;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .message.show {
     display: block;
     opacity: 1;
-    transform: translateY(0); /* Lời chúc xuất hiện mượt */
+    transform: translateY(0);
+}
+
+/* Nút */
+.buttons {
+    margin-top: 20px;
 }
 
 button {
-    margin: 10px;
+    margin: 8px;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    background-color: #457b9d;
-    color: #ffffff;
+    border-radius: 8px;
+    background-color: #ff4b5c;
+    color: white;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease, opacity 0.3s ease; /* Hiệu ứng hover và ẩn */
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #1d3557;
+    background-color: #e63946;
+    transform: scale(1.05);
 }
 
 button:active {
-    transform: scale(0.95); /* Hiệu ứng nhấn nút */
+    transform: scale(0.95);
 }
 
-/* Hoa hồng bay */
+/* Hoa hồng */
 .roses-container {
     position: absolute;
     top: 0;
@@ -74,23 +94,23 @@ button:active {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    pointer-events: none; /* Không ảnh hưởng đến việc tương tác */
+    pointer-events: none;
+    z-index: 1;
 }
 
 .rose {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    background-image: url('rose.png'); /* Đường dẫn đến hình ảnh hoa hồng */
+    width: 40px;
+    height: 40px;
+    background-image: url('rose.png');
     background-size: cover;
-    opacity: 0;
-    animation: fly 30s linear infinite;
-    animation-fill-mode: forwards; /* Giữ trạng thái cuối của hoạt ảnh */
+    opacity: 0.8;
+    animation: fall linear infinite;
 }
 
-@keyframes fly {
+@keyframes fall {
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(-60px) rotate(0deg);
         opacity: 1;
     }
     100% {
@@ -99,14 +119,18 @@ button:active {
     }
 }
 
-/* Hiệu ứng hoa hồng rơi xuống */
-@keyframes fall {
-    0% {
-        transform: translateY(-50px);
-        opacity: 1;
+/* Responsive */
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
     }
-    100% {
-        transform: translateY(100vh);
-        opacity: 0;
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
     }
 }
